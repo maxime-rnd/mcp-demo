@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__credit-demo__simuler_credit",
+      "mcp__credit-demo__consulter_capacite_emprunt",
+      "mcp__credit-demo__statut_demande",
+      "mcp__credit-demo__lister_demandes",
+      "mcp__credit-demo__preparer_demande_credit"
+    ]
+  }
+}

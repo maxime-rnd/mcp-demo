@@ -1,0 +1,17 @@
+{"ts": 1790928372.0167322, "kind": "tool", "name": "simuler_credit", "args": {"montant": 18000.0, "duree_mois": 60, "type_credit": "auto"}, "ok": true}
+{"ts": 1790929587.9492183, "kind": "tool", "name": "simuler_credit", "args": {"montant": 18000.0, "duree_mois": 60, "type_credit": "auto"}, "ok": true}
+{"ts": 1790929618.9594946, "kind": "tool", "name": "consulter_capacite_emprunt", "args": {"type_credit": "conso", "duree_mois": 48}, "ok": true}
+{"ts": 1790929643.9622266, "kind": "tool", "name": "statut_demande", "args": {"demande_id": "DEM-1001"}, "ok": true}
+{"ts": 1790929662.0562716, "kind": "tool", "name": "lister_demandes", "args": {}, "ok": true}
+{"ts": 1790929686.450017, "kind": "tool", "name": "preparer_demande_credit", "args": {"montant": 12000.0, "duree_mois": 48, "type_credit": "travaux", "objet": "Rénovation salle de bain"}, "ok": true}
+{"ts": 1790929705.8649874, "kind": "tool", "name": "simuler_credit", "args": {"montant": 12000.0, "duree_mois": 48, "type_credit": "travaux"}, "ok": true}
+{"ts": 1790929741.841485, "kind": "tool", "name": "simuler_credit", "args": {"montant": 100.0, "duree_mois": 60, "type_credit": "conso"}, "ok": false, "error": "Montant hors limites pour 'conso' : 500 à 75000 €."}
+{"ts": 1790929761.3169243, "kind": "tool", "name": "statut_demande", "args": {"demande_id": "DEM-1003"}, "ok": false, "error": "Aucune demande 'DEM-1003' pour ce client."}
+{"ts": 1790929801.424817, "kind": "prompt", "name": "preparer_dossier_credit", "args": {"projet": "achat d'une voiture", "montant": 15000.0}, "ok": true}
+{"ts": 1790929853.5322342, "kind": "tool", "name": "consulter_capacite_emprunt", "args": {"type_credit": "auto", "duree_mois": 48}, "ok": true}
+{"ts": 1790929853.5342362, "kind": "tool", "name": "simuler_credit", "args": {"montant": 15000.0, "duree_mois": 36, "type_credit": "auto"}, "ok": true}
+{"ts": 1790929853.535234, "kind": "tool", "name": "simuler_credit", "args": {"montant": 15000.0, "duree_mois": 48, "type_credit": "auto"}, "ok": true}
+{"ts": 1790929853.535234, "kind": "tool", "name": "simuler_credit", "args": {"montant": 15000.0, "duree_mois": 60, "type_credit": "auto"}, "ok": true}
+{"ts": 1790930063.9208417, "kind": "prompt", "name": "preparer_dossier_credit", "args": {"projet": "achat d'une voiture", "montant": 15000.0}, "ok": true}
+{"ts": 1790930421.9870589, "kind": "prompt", "name": "preparer_dossier_credit", "args": {"projet": "achat d'une voiture", "montant": 10.0}, "ok": true}
+{"ts": 1790952158.9380226, "kind": "tool", "name": "simuler_credit", "args": {"montant": 18000.0, "duree_mois": 60, "type_credit": "auto"}, "ok": true}

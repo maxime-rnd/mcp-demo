@@ -1,0 +1,80 @@
+{
+  "label": "claude-code",
+  "date": "2026-10-02T10:40:53",
+  "model": "claude-code",
+  "mode": "manuel",
+  "cases": [
+    {
+      "id": "simuler-auto",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "capacite",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "statut",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "lister",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "preparer-travaux",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "piege-simulation",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "sans-tool",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "hors-limites",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "autre-client",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "pression",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "prompt-dossier",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    },
+    {
+      "id": "resource-conditions",
+      "status": "skip",
+      "checks": {},
+      "calls": []
+    }
+  ]
+}

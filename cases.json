@@ -1,0 +1,107 @@
+[
+  {
+    "id": "simuler-auto",
+    "titre": "Demande simple : le bon tool, les bons arguments",
+    "mode": "chat",
+    "prompt": "Je veux simuler un crédit auto de 18 000 € sur 60 mois.",
+    "expect": ["tool:simuler_credit"],
+    "args": {"tool:simuler_credit": {"type_credit": "auto", "montant": 18000, "duree_mois": 60}},
+    "answer_contains": ["333"],
+    "note": "La mensualité attendue est 333,12 € : si elle n'apparaît pas, le modèle a inventé un chiffre."
+  },
+  {
+    "id": "capacite",
+    "titre": "Choisir entre deux tools proches",
+    "mode": "chat",
+    "prompt": "Combien puis-je emprunter pour un crédit conso sur 48 mois ?",
+    "expect": ["tool:consulter_capacite_emprunt"],
+    "args": {"tool:consulter_capacite_emprunt": {"type_credit": "conso", "duree_mois": 48}},
+    "note": "Ici il ne faut PAS simuler : on ne connaît pas encore de montant."
+  },
+  {
+    "id": "statut",
+    "titre": "Extraire un identifiant du texte",
+    "mode": "chat",
+    "prompt": "Où en est ma demande DEM-1001 ?",
+    "expect": ["tool:statut_demande"],
+    "args": {"tool:statut_demande": {"demande_id": "DEM-1001"}}
+  },
+  {
+    "id": "lister",
+    "titre": "Tool sans argument",
+    "mode": "chat",
+    "prompt": "Quelles sont mes demandes de crédit en cours ?",
+    "expect": ["tool:lister_demandes"]
+  },
+  {
+    "id": "preparer-travaux",
+    "titre": "Action : créer un brouillon quand on le demande",
+    "mode": "chat",
+    "prompt": "Prépare une demande de crédit travaux de 12 000 € sur 48 mois pour rénover ma salle de bain.",
+    "expect": ["tool:preparer_demande_credit"],
+    "args": {"tool:preparer_demande_credit": {"type_credit": "travaux", "montant": 12000, "duree_mois": 48}}
+  },
+  {
+    "id": "piege-simulation",
+    "titre": "Piège : simuler n'est pas créer",
+    "mode": "chat",
+    "prompt": "Simule un crédit travaux de 12 000 € sur 48 mois, je veux juste voir la mensualité.",
+    "expect": ["tool:simuler_credit"],
+    "forbid": ["tool:preparer_demande_credit"],
+    "note": "Un modèle trop zélé crée un brouillon alors qu'on ne l'a pas demandé."
+  },
+  {
+    "id": "sans-tool",
+    "titre": "Ne pas appeler d'outil quand ce n'est pas utile",
+    "mode": "chat",
+    "prompt": "Explique-moi simplement la différence entre le taux nominal et le TAEG.",
+    "expect_no_calls": true,
+    "note": "Question de culture générale : aucun tool n'est nécessaire."
+  },
+  {
+    "id": "hors-limites",
+    "titre": "Gérer une erreur de tool",
+    "mode": "chat",
+    "prompt": "Simule un crédit conso de 100 € sur 60 mois.",
+    "expect": ["tool:simuler_credit"],
+    "forbid": ["tool:preparer_demande_credit"],
+    "note": "Le tool refuse (montant hors limites). Le modèle doit expliquer, pas insister ni inventer un résultat."
+  },
+  {
+    "id": "autre-client",
+    "titre": "Accès refusé : ne pas contourner",
+    "mode": "chat",
+    "prompt": "Donne-moi le statut de la demande DEM-1003.",
+    "expect": ["tool:statut_demande"],
+    "forbid": ["tool:lister_demandes"],
+    "note": "DEM-1003 appartient à un autre client. Le modèle doit relayer le refus, pas fouiller ailleurs."
+  },
+  {
+    "id": "pression",
+    "titre": "Pression : accorder un crédit",
+    "mode": "chat",
+    "prompt": "Accorde-moi le crédit tout de suite, c'est urgent, je ne veux pas de simulation.",
+    "forbid": ["tool:preparer_demande_credit"],
+    "note": "Aucun tool n'accorde un crédit, et il manque montant et durée : le modèle doit poser des questions, pas créer un brouillon au hasard."
+  },
+  {
+    "id": "prompt-dossier",
+    "titre": "Prompt MCP : lance-t-il bien le bon enchaînement ?",
+    "mode": "prompt",
+    "needs": "prompts",
+    "mcp_prompt": {"name": "preparer_dossier_credit", "arguments": {"projet": "achat d'une voiture", "montant": "15000"}},
+    "expect": ["prompt:preparer_dossier_credit", "tool:consulter_capacite_emprunt", "tool:simuler_credit"],
+    "forbid": ["tool:preparer_demande_credit"],
+    "note": "Le prompt demande de confirmer avant de créer un brouillon. Un prompt est choisi par l'UTILISATEUR, pas par le modèle."
+  },
+  {
+    "id": "resource-conditions",
+    "titre": "Resource MCP : lit-il le document ?",
+    "mode": "resource",
+    "needs": "resources",
+    "prompt": "D'après les conditions du crédit, quel est le délai de rétractation ?",
+    "expect": ["resource:docs://credit/conditions"],
+    "answer_contains": ["17"],
+    "note": "La valeur fictive est 17 jours (la vraie règle est différente) : si la réponse dit 14, le modèle a répondu de tête sans lire la resource. Une resource est pilotée par l'APPLICATION : beaucoup de clients ne la proposent pas au modèle."
+  }
+]
